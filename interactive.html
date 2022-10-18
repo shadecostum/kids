@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interact with me</title>
+      
+     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style1.css" />
+      <link rel="stylesheet" href="style2.css" />
+      
+      <style>
+      
+          input{
+              color: black !important;
+          }
+          
+          @mixin sp-layout {
+  @media screen and (max-width: 750px) {
+    @content;
+  }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+  overflow: hidden;
+}
+
+
+          
+          
+          
+          
+          
+          
+          
+          
+      </style>
+      
+    
+    
+    
+    
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=bVFu6YOQ"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script>
+     
+   
+</script>
+</head>
+<body>
+    
+   
+    
+    
+    
+      <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="index.html" class="navbar-brand">Smart Kid</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first ">
+                         <li style="text-decoration: underline"><a href="index.html" style="text-decoration: underline">Home</a></li>
+                      
+                         <li style="text-decoration: underline"><a href="imageread.html" >Images</a></li>
+                        <li style="text-decoration: underline"><a href="poemread.html" >Poems</a>                                        
+                        </li>
+                         <li style="text-decoration: underline"><a href="storyread.html" >Stories</a></li>
+  <li style="text-decoration: underline"><a href="interact.html" >Interactive</a></li>
+                         <li style="text-decoration: underline"><a href="games.html" >Game</a></li>                    </ul>
+ 
+               </div>
+
+          </div>
+     </section>
+    
+    
+    
+    
+    
+    
+    
+    
+  <script>
+    let aiapi = "ABnkLQfCWoJ2";
+    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+    let finalTranscript = '';
+   
+    let recognition = new window.SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.maxAlternatives = 10;
+    recognition.continuous = true;
+    recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+        let transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+            document.getElementById("show").innerHTML = "Me :"+ transcript;
+          console.log(transcript);
+          async function fetchText() {
+          let response = await fetch('https://api.pgamerx.com/v4/ai?message='+transcript, {
+            method: "GET",
+            headers: {"x-api-key": aiapi}
+          });
+          let data = await response.text();          
+          let voiceout = JSON.parse(data);
+          console.log(voiceout[0]);
+          document.getElementById("show").innerHTML = "Robot :"+ voiceout[0].message;
+         responsiveVoice.speak(voiceout[0].message, "UK English Male");
+}
+fetchText();
+         
+      }
+    } 
+}
+    
+    function startButton(event) {
+    recognition.start();
+  
+}
+ recognition.start();
+  </script>
+     <section id="home" data-stellar-background-ratio="0.5">
+        
+    <div class="container">
+      <h1 style="color: antiquewhite">Interact with me </h1>
+        <p style="text-align: center;margin-bottom: 30px;color: beige">Say Hello! to your new friend.
+        </p>
+        
+      
+          
+<button id="start_button" class="readbutton" onclick="startButton(event)"> Start</button>
+    <div id="show" style="text-align: center;color: aqua;margin-top: 20px;font-size: 18px"></div>
+         
+         <!--     
+            <button id="startbtn" class="readbutton">Start</button>              
+        <h1 style="color: chartreuse;font-size: 25px">Say : " Hello, What is your name ? "</h1>
+        
+       <!--<div class="blog-image" style="margin:20px auto;">
+                                   <img src="images/Twinkle-Twinkle-Little-Star.jpg" class="img-responsive img-hcenter" alt="Code Reversed attribute Image" width="50%">
+                              </div>
+        
+        
+        -->
+      
+        
+    
+        
+        
+    </div>
+      </section>
+ <!-- <div id="show" style="text-align: center"></div>
+<button id="start_button" class="readbutton" onclick="startButton(event)"> Start</button>
+     <h1 style="color: chartreuse;font-size: 25px">Say : " Hello, What is your name ? "</h1>
+ -->
+</body>
+</html>
+
+
+
+
+<!-- <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Smart Kid | Home</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
+     <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="style1.css" />
+      <link rel="stylesheet" href="style2.css" />
+      
+      <style>
+      
+          input{
+              color: black !important;
+          }
+      </style>
+      
+      
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+      
+      <!-- MENU 
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE 
+                    <a href="index.html" class="navbar-brand">Smart Kid</a>
+               </div>
+
+               <!-- MENU LINKS 
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first ">
+                         <li style="text-decoration: underline"><a href="index.html" style="text-decoration: underline">Home</a></li>
+                         <li style="text-decoration: underline"><a href="AboutUs.html" >About Us</a></li>
+                         <li style="text-decoration: underline"><a href="imageread.html" >Images</a></li>
+                        <li style="text-decoration: underline"><a href="poemread.html" >Poems</a>                                        
+                        </li>
+                         <li style="text-decoration: underline"><a href="storyread.html" >Stories</a></li>
+                        <li style="text-decoration: underline"><a href="interactive.html" >Interactive</a></li>
+                    </ul>
+ 
+               </div>
+
+          </div>
+     </section>
+      
+      
+      
+      
+      
+     <!-- HOME 
+     <section id="home" data-stellar-background-ratio="0.5">
+        
+    <div class="container">
+      <h1 style="color: black">Interact with Kiti </h1>
+        <p style="text-align: center">Interact with your new friend Kiti .
+        </p>
+        
+      
+        
+         
+              
+            <button id="startbtn" class="readbutton">Start</button>              
+        <h1 style="color: chartreuse;font-size: 25px">Say : " Hello, What is your name ? "</h1>
+        
+       <!--<div class="blog-image" style="margin:20px auto;">
+                                   <img src="images/Twinkle-Twinkle-Little-Star.jpg" class="img-responsive img-hcenter" alt="Code Reversed attribute Image" width="50%">
+                              </div>
+        
+        
+        
+      
+        
+    
+         <div>
+    
+             
+             <button id="stopbtn"  style="margin-top: 60px;background: red">Stop</button>
+             
+             <p id="storyread" style="text-align: center">
+
+
+             </p>
+        
+        </div>
+        
+        <p id="gettext"></p>
+    </div>
+      </section>
+    <script src="interactivejs.js" async defer></script>
+  </body>
+</html>
+  
+-->
